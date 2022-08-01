@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { createBoard, createEmptyBlock, nextTick } from './logic'
-import NextBlock from './components/NextBlock.vue'
+import { gameBoard as board, initGame, nextTick, nextBlock } from './logic'
 
-const board = ref(createBoard())
-const nextBlock = createEmptyBlock()
+initGame()
 </script>
 
 <template>
@@ -24,9 +21,13 @@ const nextBlock = createEmptyBlock()
 
       <div wfull>
         <div mxauto my3 p3 b flex>
-          <NextBlock :block="nextBlock" />
+          <NextBlock
+            :block="nextBlock[0]"
+            :state="nextBlock[1]"
+            :color="nextBlock[2]"
+          />
 
-          <div btn @click="nextTick(board)">NextTick</div>
+          <div btn @click="nextTick">NextTick</div>
         </div>
       </div>
     </div>
@@ -36,6 +37,6 @@ const nextBlock = createEmptyBlock()
 <style>
 body {
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 </style>

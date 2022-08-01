@@ -1,6 +1,6 @@
 import { COLORS, HEIGHT, WIDTH } from './constants'
 import { BLOCKS } from './block'
-import type { Block, BlockType, Board, Lattice, SingleBlock } from '../types'
+import type { Block, BlockIndex, Board, SingleBlock } from '../types'
 
 export function createBoard(): Board {
   return Array.from({ length: HEIGHT }, () =>
@@ -24,12 +24,12 @@ function getRandomColor() {
 }
 
 export function createBlock(): Block {
-  const allBlocks: [BlockType, SingleBlock][] = []
+  const allBlocks: [BlockIndex, SingleBlock][] = []
 
   for (const [blockType, blocks] of BLOCKS) {
-    blocks.forEach((block) => {
+    blocks.forEach((block, idx) => {
       // matching every block with its type
-      allBlocks.push([blockType, block])
+      allBlocks.push([`${blockType}-${idx}`, block])
     })
   }
 
