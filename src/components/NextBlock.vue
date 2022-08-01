@@ -58,8 +58,8 @@ const nextBlock = computed(() => {
 
 <template>
   <div b select-none>
-    <div flex w20 h20 justify-center items-center>
-      <div v-for="(_, row) in size[1]">
+    <div flex="~ col" w20 h20 justify-center items-center>
+      <div flex v-for="(_, row) in size[1]">
         <div
           w4
           h4
