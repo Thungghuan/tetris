@@ -8,6 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Board: typeof import('./src/components/Board.vue')['default']
-    Lattice: typeof import('./src/components/lattice.vue')['default']
+    Lattice: typeof import('./src/components/Lattice.vue')['default']
   }
 }

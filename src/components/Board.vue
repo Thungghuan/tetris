@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { HEIGHT, WIDTH } from '../logic'
+import { toRef } from 'vue'
+import type { Board } from '@/types'
+
+const props = defineProps<{
+  board: Board
+}>()
+
+const board = toRef(props, 'board')
 </script>
 
 <template>
-  <div>
-    <div flex v-for="row in HEIGHT">
-      <Lattice v-for="col in WIDTH" />
+  <div p3 b select-none>
+    <div flex v-for="row in board">
+      <Lattice v-for="lattice in row" :lattice="lattice" />
     </div>
   </div>
 </template>
