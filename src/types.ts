@@ -21,3 +21,12 @@ export enum GameState {
   FallEnd,
   Eliminate
 }
+
+export enum BlockMovement {
+  Rotate,
+  Down,
+  Left,
+  Right
+}
+
+export type RefCod = [number, number]

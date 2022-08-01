@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { createBlock, createBoard, createEmptyBlock } from './board'
 import { GameState, type Board } from '@/types'
+import { initMovement } from './movement'
 
 export const gameState = ref<GameState>()
 export const gameBoard = ref<Board>()
@@ -34,6 +35,8 @@ export function nextTick() {
 
     currentBlock.value = nextBlock.value
     nextBlock.value = createBlock()
+
+    initMovement()
 
     gameState.value = GameState.Falling
   }
