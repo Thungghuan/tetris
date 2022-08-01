@@ -37,3 +37,11 @@ export function createBlock(): Block {
 
   return [...allBlocks[randomIdx], getRandomColor()]
 }
+
+export function createEmptyBlock(): Block {
+  return [
+    null,
+    Array.from({ length: 4 }, () => Array.from({ length: 4 }, () => 0)),
+    ''
+  ]
+}
