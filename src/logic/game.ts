@@ -13,7 +13,7 @@ function updateBoard(board: Board) {
 export function nextTick(board: Board) {
   updateBoard(board)
 
-  const [nextBlock, color] = createBlock()
+  const [blockType, nextBlock, color] = createBlock()
   const width = board[0].length
 
   for (let row = 0; row < 4; ++row) {
