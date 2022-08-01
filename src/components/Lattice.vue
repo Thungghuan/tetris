@@ -10,5 +10,7 @@ const lattice = toRef(props, 'lattice')
 </script>
 
 <template>
-  <div w6 h6 bg-gray-300 :style="{ backgroundColor: lattice.color }"></div>
+  <div w6 h6 bg-gray-300 :style="{ backgroundColor: lattice.color }">
+    <!-- {{ lattice.state }} -->
+  </div>
 </template>

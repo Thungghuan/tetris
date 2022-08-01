@@ -5,4 +5,4 @@ export interface Lattice {
 
 export type Board = Lattice[][]
 
-export type Block = number[][]
+export type Block = [number[][], string]

@@ -1,5 +1,6 @@
 export const WIDTH = 12
 export const HEIGHT = 20
+
 export const COLORS = [
   '#22d3ee',
   '#334155',
