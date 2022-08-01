@@ -5,6 +5,7 @@ import { GameState, type Board } from '@/types'
 export const gameState = ref<GameState>()
 export const gameBoard = ref<Board>()
 
+export const currentBlock = ref(createEmptyBlock())
 export const nextBlock = ref(createEmptyBlock())
 
 export function initGame() {
@@ -27,6 +28,11 @@ function updateBoard() {
 
 export function nextTick() {
   if (gameState.value === GameState.FallStart) {
+    if (nextBlock.value.type === null) {
+      nextBlock.value = createBlock()
+    }
+
+    currentBlock.value = nextBlock.value
     nextBlock.value = createBlock()
 
     gameState.value = GameState.Falling

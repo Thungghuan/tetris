@@ -6,9 +6,13 @@ export interface Lattice {
 export type Board = Lattice[][]
 
 export type BlockType = 'I' | 'O' | 'L' | 'J' | 'T' | 'S' | 'Z'
-export type BlockIndex = `${BlockType}-${number}`
-export type SingleBlock = number[][]
-export type Block = [BlockIndex | null, SingleBlock, string]
+export type BlockIndex = number
+export type BlockState = number[][]
+export interface Block {
+  type: BlockType | null
+  index: BlockIndex
+  color: string
+}
 
 export enum GameState {
   Init,

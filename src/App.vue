@@ -22,9 +22,7 @@ initGame()
       <div wfull>
         <div mxauto my3 p3 b flex>
           <NextBlock
-            :block="nextBlock[0]"
-            :state="nextBlock[1]"
-            :color="nextBlock[2]"
+            :nextBlock="nextBlock"
           />
 
           <div btn @click="nextTick">NextTick</div>

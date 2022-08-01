@@ -1,6 +1,6 @@
-import type { BlockType, SingleBlock } from '@/types'
+import type { BlockType, BlockState } from '@/types'
 
-export const BLOCKS: Map<BlockType, SingleBlock[]> = new Map([
+export const BlockStates: Map<BlockType, BlockState[]> = new Map([
   [
     'I',
     [
@@ -154,3 +154,18 @@ export const BLOCKS: Map<BlockType, SingleBlock[]> = new Map([
     ]
   ]
 ])
+
+// prettier-ignore
+const blockSize: Record<BlockType, [number, number][]> = {
+  I: [ [4, 1], [1, 4] ],
+  L: [ [2, 3], [3, 2] ],
+  J: [ [2, 3], [3, 2] ],
+  O: [ [2, 2] ],
+  T: [ [3, 2], [2, 3] ],
+  S: [ [3, 2], [2, 3] ],
+  Z: [ [3, 2], [2, 3] ]
+}
+
+export function getBlockSize(type: BlockType, index: number) {
+  return blockSize[type][index % 2]
+}

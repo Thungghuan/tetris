@@ -1,6 +1,6 @@
 import { COLORS, HEIGHT, WIDTH } from './constants'
-import { BLOCKS } from './block'
-import type { Block, BlockIndex, Board, SingleBlock } from '../types'
+import { BlockStates } from './block'
+import type { Block, Board } from '../types'
 
 export function createBoard(): Board {
   return Array.from({ length: HEIGHT }, () =>
@@ -24,24 +24,30 @@ function getRandomColor() {
 }
 
 export function createBlock(): Block {
-  const allBlocks: [BlockIndex, SingleBlock][] = []
+  const allBlocks: Pick<Block, 'type' | 'index'>[] = []
 
-  for (const [blockType, blocks] of BLOCKS) {
-    blocks.forEach((block, idx) => {
+  for (const [type, blocks] of BlockStates) {
+    blocks.forEach((_, index) => {
       // matching every block with its type
-      allBlocks.push([`${blockType}-${idx}`, block])
+      allBlocks.push({
+        type,
+        index
+      })
     })
   }
 
   const randomIdx = Math.floor(Math.random() * allBlocks.length)
 
-  return [...allBlocks[randomIdx], getRandomColor()]
+  return {
+    ...allBlocks[randomIdx],
+    color: getRandomColor()
+  }
 }
 
 export function createEmptyBlock(): Block {
-  return [
-    null,
-    Array.from({ length: 4 }, () => Array.from({ length: 4 }, () => 0)),
-    ''
-  ]
+  return {
+    type: null,
+    index: 0,
+    color: ''
+  }
 }
