@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno } from 'unocss'
+import Components from 'unplugin-vue-components/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +13,9 @@ export default defineConfig({
 
     UnoCSS({
       presets: [presetUno(), presetAttributify()]
-    })
+    }),
+
+    Components()
   ],
   resolve: {
     alias: {
