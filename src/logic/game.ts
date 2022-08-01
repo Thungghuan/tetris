@@ -26,23 +26,17 @@ function updateBoard() {
 }
 
 export function nextTick() {
-  // updateBoard()
+  if (gameState.value === GameState.FallStart) {
+    nextBlock.value = createBlock()
 
-  nextBlock.value = createBlock()
+    gameState.value = GameState.Falling
+  }
 
-  // const board = gameBoard.value!
+  if (gameState.value === GameState.Falling) {
+    gameState.value = GameState.FallEnd
+  }
 
-  // const width = board[0].length
-
-  // for (let row = 0; row < 4; ++row) {
-  //   for (let col = 0; col < 4; ++col) {
-  //     const state = nextBlock[row][col]
-
-  //     board[row][col + (width / 2 - 2)].state = state
-
-  //     if (state === 1) {
-  //       board[row][col + (width / 2 - 2)].color = color
-  //     }
-  //   }
-  // }
+  if (gameState.value === GameState.FallEnd) {
+    gameState.value = GameState.FallStart
+  }
 }
