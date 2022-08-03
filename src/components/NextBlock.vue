@@ -15,14 +15,14 @@ const color = computed(() => block.value.color)
 
 const size = computed(() => {
   if (blockType.value && blockIndex.value !== undefined) {
-    return getBlockSize(blockType.value, blockIndex.value)
+    return getBlockSize(block.value)
   } else {
     return [0, 0]
   }
 })
 
 const nextBlock = computed(() => {
-  const [width, height] = size.value
+  const [height, width] = size.value
 
   if (blockType.value === 'I' || blockType.value === 'O') {
     return Array.from({ length: height }, () =>
@@ -39,13 +39,13 @@ const nextBlock = computed(() => {
       if (width === 2) {
         for (let i = 0; i < 3; ++i) {
           for (let j = 0; j < 2; ++j) {
-            nextState[i][j] = state[i + 1][j + 1]
+            nextState[i][j] = state[i][j]
           }
         }
       } else {
         for (let i = 0; i < 2; ++i) {
           for (let j = 0; j < 3; ++j) {
-            nextState[i][j] = state[i + 2][j]
+            nextState[i][j] = state[i][j]
           }
         }
       }
@@ -59,11 +59,11 @@ const nextBlock = computed(() => {
 <template>
   <div b select-none>
     <div flex="~ col" w20 h20 justify-center items-center>
-      <div flex v-for="(_, row) in size[1]">
+      <div flex v-for="(_, row) in size[0]">
         <div
           w4
           h4
-          v-for="(_, col) in size[0]"
+          v-for="(_, col) in size[1]"
           :style="{ backgroundColor: nextBlock[row][col] === 1 ? color : '' }"
         />
       </div>

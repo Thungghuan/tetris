@@ -1,20 +1,16 @@
-import type { BlockType, BlockState } from '@/types'
+import type { BlockType, BlockState, Block, BlockIndex } from '@/types'
 
+// prettier-ignore
 export const BlockStates: Map<BlockType, BlockState[]> = new Map([
   [
     'I',
     [
+      [ [1, 1, 1, 1] ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 1, 1, 1]
-      ],
-      [
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0]
+        [1],
+        [1],
+        [1],
+        [1]
       ]
     ]
   ],
@@ -23,10 +19,8 @@ export const BlockStates: Map<BlockType, BlockState[]> = new Map([
     'O',
     [
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 1, 1, 0],
-        [0, 1, 1, 0]
+        [1, 1],
+        [1, 1]
       ]
     ]
   ],
@@ -35,28 +29,22 @@ export const BlockStates: Map<BlockType, BlockState[]> = new Map([
     'L',
     [
       [
-        [0, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 1, 0]
+        [1, 0],
+        [1, 0],
+        [1, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 1, 1, 0],
-        [1, 0, 0, 0]
+        [1, 1, 1],
+        [1, 0, 0]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 1, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0]
+        [1, 1],
+        [0, 1],
+        [0, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 1, 0],
-        [1, 1, 1, 0]
+        [0, 0, 1],
+        [1, 1, 1]
       ]
     ]
   ],
@@ -64,28 +52,22 @@ export const BlockStates: Map<BlockType, BlockState[]> = new Map([
     'J',
     [
       [
-        [0, 0, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 1, 1, 0]
+        [0, 1],
+        [0, 1],
+        [1, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 0, 0, 0],
-        [1, 1, 1, 0]
+        [1, 0, 0],
+        [1, 1, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 1, 1, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0]
+        [1, 1],
+        [1, 0],
+        [1, 0]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 1, 1, 0],
-        [0, 0, 1, 0]
+        [1, 1, 1],
+        [0, 0, 1]
       ]
     ]
   ],
@@ -93,28 +75,22 @@ export const BlockStates: Map<BlockType, BlockState[]> = new Map([
     'T',
     [
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 1, 1, 0],
-        [0, 1, 0, 0]
+        [1, 1, 1],
+        [0, 1, 0]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 1, 0],
-        [0, 1, 1, 0],
-        [0, 0, 1, 0]
+        [0, 1],
+        [1, 1],
+        [0, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 1, 0, 0],
-        [1, 1, 1, 0]
+        [0, 1, 0],
+        [1, 1, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 1, 0],
-        [0, 1, 0, 0]
+        [1, 0],
+        [1, 1],
+        [1, 0]
       ]
     ]
   ],
@@ -122,16 +98,13 @@ export const BlockStates: Map<BlockType, BlockState[]> = new Map([
     'S',
     [
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 1, 1, 0],
-        [1, 1, 0, 0]
+        [0, 1, 1],
+        [1, 1, 0]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 1, 0],
-        [0, 0, 1, 0]
+        [1, 0],
+        [1, 1],
+        [0, 1]
       ]
     ]
   ],
@@ -140,32 +113,35 @@ export const BlockStates: Map<BlockType, BlockState[]> = new Map([
     'Z',
     [
       [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 1, 0, 0],
-        [0, 1, 1, 0]
+        [1, 1, 0],
+        [0, 1, 1]
       ],
       [
-        [0, 0, 0, 0],
-        [0, 0, 1, 0],
-        [0, 1, 1, 0],
-        [0, 1, 0, 0]
+        [0, 1],
+        [1, 1],
+        [1, 0]
       ]
     ]
   ]
 ])
 
-// prettier-ignore
-const blockSize: Record<BlockType, [number, number][]> = {
-  I: [ [4, 1], [1, 4] ],
-  L: [ [2, 3], [3, 2] ],
-  J: [ [2, 3], [3, 2] ],
-  O: [ [2, 2] ],
-  T: [ [3, 2], [2, 3] ],
-  S: [ [3, 2], [2, 3] ],
-  Z: [ [3, 2], [2, 3] ]
+//// prettier-ignore
+// const blockSize: Record<BlockType, [number, number][]> = {
+//   I: [ [4, 1], [1, 4] ],
+//   L: [ [2, 3], [3, 2] ],
+//   J: [ [2, 3], [3, 2] ],
+//   O: [ [2, 2] ],
+//   T: [ [3, 2], [2, 3] ],
+//   S: [ [3, 2], [2, 3] ],
+//   Z: [ [3, 2], [2, 3] ]
+// }
+
+export function getBlockSize(block: Block) {
+  const state = getBlockState(block)
+  return [state.length, state[0].length]
 }
 
-export function getBlockSize(type: BlockType, index: number) {
-  return blockSize[type][index % 2]
+export function getBlockState(block: Block) {
+  const { type, index } = block
+  return BlockStates.get(type!)![index]
 }

@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { gameBoard as board, initGame, nextTick, nextBlock } from './logic'
+import {
+  gameBoard as board,
+  initGame,
+  nextTick,
+  nextBlock,
+  currentBlock
+} from './logic'
 
 initGame()
 </script>
@@ -21,9 +27,8 @@ initGame()
 
       <div wfull>
         <div mxauto my3 p3 b flex>
-          <NextBlock
-            :nextBlock="nextBlock"
-          />
+          <!-- TEST: use current block for testing -->
+          <NextBlock :nextBlock="currentBlock" />
 
           <div btn @click="nextTick">NextTick</div>
         </div>
