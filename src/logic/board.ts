@@ -69,15 +69,45 @@ export function updateBlock(refCod: RefCod, isRemove: boolean = false) {
       if (isRemove) {
         gameBoard.value![startRow - row][startCol + col].state -=
           state[blockHeight - 1 - row][col]
-        gameBoard.value![startRow - row][startCol + col].color = undefined
       } else {
         gameBoard.value![startRow - row][startCol + col].state +=
           state[blockHeight - 1 - row][col]
-        gameBoard.value![startRow - row][startCol + col].color =
-          currentBlock.value.color
+      }
+
+      if (state[blockHeight - 1 - row][col]) {
+        gameBoard.value![startRow - row][startCol + col].color = isRemove
+          ? undefined
+          : currentBlock.value.color
       }
     }
   }
+}
+
+export function isBlockLanded() {
+  const [refRow, refCol] = refCod.value!
+
+  if (refRow === HEIGHT - 1) return true
+
+  const blockState = getBlockState(currentBlock.value)
+  const [blockHeight, blockWidth] = getBlockSize(currentBlock.value)
+
+  const blockFloor = []
+  for (let col = 0; col < blockWidth; ++col) {
+    let lastRow = blockHeight - 1
+
+    while (lastRow >= 0 && blockState[lastRow][col] === 0) lastRow--
+
+    blockFloor.push(lastRow)
+  }
+
+  return blockFloor.some((row, col) => {
+    if (refRow - (blockHeight - 1 - row) + 1 < 0) return false
+
+    return (
+      gameBoard.value![refRow - (blockHeight - 1 - row) + 1][refCol + col]
+        .state === 1
+    )
+  })
 }
 
 export function updateBoard(moveDirection: BlockMovement) {

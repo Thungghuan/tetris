@@ -27,8 +27,7 @@ initGame()
 
       <div wfull>
         <div mxauto my3 p3 b flex>
-          <!-- TEST: use current block for testing -->
-          <NextBlock :nextBlock="currentBlock" />
+          <NextBlock :nextBlock="nextBlock" />
 
           <div btn @click="nextTick">NextTick</div>
         </div>

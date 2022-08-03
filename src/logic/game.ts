@@ -3,6 +3,7 @@ import {
   createBlock,
   createBoard,
   createEmptyBlock,
+  isBlockLanded,
   updateBoard
 } from './board'
 import { BlockMovement, GameState, type Board } from '@/types'
@@ -19,6 +20,10 @@ export function initGame() {
   gameBoard.value = createBoard()
 
   gameState.value = GameState.FallStart
+
+  // setInterval(() => {
+  //   nextTick()
+  // }, 60)
 }
 
 export function nextTick() {
@@ -37,6 +42,10 @@ export function nextTick() {
 
   if (gameState.value === GameState.Falling) {
     updateBoard(BlockMovement.Down)
+
+    if (isBlockLanded()) {
+      gameState.value = GameState.FallEnd
+    }
   }
 
   if (gameState.value === GameState.FallEnd) {
