@@ -55,18 +55,27 @@ export function createEmptyBlock(): Block {
   }
 }
 
-export function removeLastBlock(lastCod: RefCod) {
+export function updateBlock(refCod: RefCod, isRemove: boolean = false) {
   const [blockHeight, blockWidth] = getBlockSize(currentBlock.value)
+  const state = getBlockState(currentBlock.value)
 
-  const removeHeight =
-    lastCod[0] + 1 < blockHeight ? lastCod[0] + 1 : blockHeight
+  const [startRow, startCol] = refCod
+
+  const removeHeight = Math.min(startRow + 1, blockHeight)
   const removeWidth = blockWidth
 
-  for (let row = 0; row <= removeHeight; ++row) {
+  for (let row = 0; row < removeHeight; ++row) {
     for (let col = 0; col < removeWidth; ++col) {
-      const state = getBlockState(currentBlock.value)
-
-      gameBoard.value![row][col].state -= state[row][col]
+      if (isRemove) {
+        gameBoard.value![startRow - row][startCol + col].state -=
+          state[blockHeight - 1 - row][col]
+        gameBoard.value![startRow - row][startCol + col].color = undefined
+      } else {
+        gameBoard.value![startRow - row][startCol + col].state +=
+          state[blockHeight - 1 - row][col]
+        gameBoard.value![startRow - row][startCol + col].color =
+          currentBlock.value.color
+      }
     }
   }
 }
@@ -74,18 +83,11 @@ export function removeLastBlock(lastCod: RefCod) {
 export function updateBoard(moveDirection: BlockMovement) {
   const lastCod = refCod.value!
 
-  removeLastBlock(lastCod)
+  updateBlock(lastCod, true)
 
   if (moveDirection === BlockMovement.Down) {
     refCod.value![0]++
   }
 
-  console.log('update')
-
-  // for (let row = 0; row < board.length; ++row) {
-  //   for (let col = 0; col < board[0].length; ++col) {
-  //     board[row][col].state = 0
-  //     board[row][col].color = undefined
-  //   }
-  // }
+  updateBlock(refCod.value!)
 }
