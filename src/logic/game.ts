@@ -20,13 +20,34 @@ export function initGame() {
   gameBoard.value = createBoard()
 
   gameState.value = GameState.FallStart
-
-  // setInterval(() => {
-  //   nextTick()
-  // }, 60)
 }
 
-export function nextTick() {
+export function keyStrokeHandler(event: KeyboardEvent) {
+  event.preventDefault()
+
+  const key = event.key
+
+  switch (key) {
+    case 'ArrowUp':
+      console.log('Rotate')
+      break
+    case 'ArrowDown':
+      nextTick(BlockMovement.Down)
+      break
+    case 'ArrowLeft':
+      nextTick(BlockMovement.Left)
+      break
+    case 'ArrowRight':
+      nextTick(BlockMovement.Right)
+      break
+    case ' ':
+      break
+    default:
+      break
+  }
+}
+
+export function nextTick(movement?: BlockMovement) {
   if (gameState.value === GameState.FallStart) {
     if (nextBlock.value.type === null) {
       nextBlock.value = createBlock()
@@ -40,12 +61,14 @@ export function nextTick() {
     gameState.value = GameState.Falling
   }
 
-  if (gameState.value === GameState.Falling) {
+  if (movement) {
+    updateBoard(movement)
+  } else if (gameState.value === GameState.Falling) {
     updateBoard(BlockMovement.Down)
+  }
 
-    if (isBlockLanded()) {
-      gameState.value = GameState.FallEnd
-    }
+  if (isBlockLanded()) {
+    gameState.value = GameState.FallEnd
   }
 
   if (gameState.value === GameState.FallEnd) {

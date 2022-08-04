@@ -110,13 +110,38 @@ export function isBlockLanded() {
   })
 }
 
+function canBlockMove(lastCod: RefCod, moveDirection: BlockMovement) {
+  const [_blockHeight, blockWidth] = getBlockSize(currentBlock.value)
+
+  if (moveDirection === BlockMovement.Left && refCod.value![1] === 0)
+    return false
+  if (
+    moveDirection === BlockMovement.Right &&
+    refCod.value![1] + blockWidth === WIDTH
+  )
+    return false
+
+  return true
+}
+
 export function updateBoard(moveDirection: BlockMovement) {
   const lastCod = refCod.value!
 
+  if (!canBlockMove(lastCod, moveDirection)) return
+
   updateBlock(lastCod, true)
 
-  if (moveDirection === BlockMovement.Down) {
-    refCod.value![0]++
+  switch (moveDirection) {
+    case BlockMovement.Down:
+      refCod.value![0]++
+      break
+    case BlockMovement.Left:
+      refCod.value![1]--
+      break
+    case BlockMovement.Right:
+      refCod.value![1]++
+    default:
+      break
   }
 
   updateBlock(refCod.value!)
