@@ -1,4 +1,4 @@
-import type { BlockType, BlockState, Block, BlockIndex } from '@/types'
+import type { BlockType, BlockState, Block, BlockIndex } from '../types'
 
 // prettier-ignore
 export const BlockStates: Map<BlockType, BlockState[]> = new Map([

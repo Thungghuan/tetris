@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, toRef } from 'vue'
-import type { Block } from '@/types'
-import { BlockStates, getBlockSize } from '@/logic'
+import type { Block } from '../types'
+import { BlockStates, getBlockSize } from '../logic'
 
 const props = defineProps<{
   nextBlock: Block

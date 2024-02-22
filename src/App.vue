@@ -36,7 +36,7 @@ initGame()
         <div mxauto my3 p3 b flex>
           <NextBlock :nextBlock="nextBlock" />
 
-          <!-- <div btn @click="nextTick()">NextTick</div> -->
+          <div btn @click="nextTick()">NextTick</div>
           <!-- <div btn @click="start">Start</div> -->
         </div>
       </div>

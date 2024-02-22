@@ -91,7 +91,7 @@ export function isBlockLanded() {
   const blockState = getBlockState(currentBlock.value)
   const [blockHeight, blockWidth] = getBlockSize(currentBlock.value)
 
-  const blockFloor = []
+  const blockFloor: number[] = []
   for (let col = 0; col < blockWidth; ++col) {
     let lastRow = blockHeight - 1
 
@@ -140,6 +140,7 @@ export function updateBoard(moveDirection: BlockMovement) {
       break
     case BlockMovement.Right:
       refCod.value![1]++
+      break
     default:
       break
   }

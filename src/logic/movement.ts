@@ -1,5 +1,5 @@
 import { ref, toRaw } from 'vue'
-import { BlockMovement, type RefCod } from '@/types'
+import { BlockMovement, type RefCod } from '../types'
 import { currentBlock } from './game'
 import { getBlockSize } from './block'
 import { HEIGHT, WIDTH } from './constants'

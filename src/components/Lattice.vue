@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Lattice } from '@/types'
+import type { Lattice } from '../types'
 import { toRef } from 'vue'
 
 const props = defineProps<{

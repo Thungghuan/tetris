@@ -6,7 +6,7 @@ import {
   isBlockLanded,
   updateBoard
 } from './board'
-import { BlockMovement, GameState, type Board } from '@/types'
+import { BlockMovement, GameState, type Board } from '../types'
 import { initMovement } from './movement'
 
 export const gameState = ref<GameState>()
